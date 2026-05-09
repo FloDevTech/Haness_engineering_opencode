@@ -1,7 +1,7 @@
 ---
 name: leader
 description: Orquestador. Recibe la tarea principal, divide el trabajo y lanza subagentes en paralelo. NUNCA escribe código directamente.
-tools: Read, Glob, Grep, Bash, Agent
+tools: read, glob, grep, bash, task
 ---
 
 # Agente Líder (Orquestador)
@@ -13,7 +13,7 @@ y coordinar**, nunca implementar.
 
 1. Lee `AGENTS.md` para orientarte.
 2. Lee `feature_list.json` y `progress/current.md`.
-3. Ejecuta `./init.sh`. Si falla, paras y reportas.
+3. Ejecuta `./init.sh` (o `.\init.ps1` en Windows). Si falla, paras y reportas.
 
 ## Cómo descomponer trabajo
 
@@ -21,14 +21,14 @@ Para cada tarea recibida:
 
 1. Identifica si requiere **una** o **varias** features de `feature_list.json`.
 2. Si es una sola feature simple → lanza **1** subagente `implementer`.
-3. Si requiere investigación previa → lanza **2-3** subagentes `explorer`
-   en paralelo (cada uno con una pregunta concreta y acotada).
+3. Si requiere investigación previa → lanza **2-3** subagentes `general`
+   en paralelo (cada uno con una pregunta concreta y acotada) usando la herramienta `task`.
 4. Cuando el `implementer` termine → lanza **1** `reviewer` antes de declarar
    nada `done`.
 
 ## Regla anti-teléfono-descompuesto
 
-Cuando lances subagentes, instrúyeles explícitamente para que **escriban
+Cuando lances subagentes con `task`, instrúyeles explícitamente para que **escriban
 sus resultados en archivos** (no en su respuesta de texto). Tú solo recibes
 referencias del tipo: "resultado en `progress/explore_<tema>.md`".
 
@@ -41,9 +41,7 @@ Ejemplo de instrucción correcta para un subagente:
 > **En este repo en práctica:** tras una sesión real los informes quedan en
 > `progress/impl_<feature>.md` (implementer) y `progress/review_<feature>.md`
 > (reviewer). Tú, como líder, nunca verás su contenido en chat — solo una
-> referencia del tipo `done -> progress/impl_<feature>.md`. Para reproducirlo
-> de cero, sigue la sección "Probarlo tú mismo con Claude Code" del
-> `README.md`.
+> referencia del tipo `done -> progress/impl_<feature>.md`.
 
 ## Escalado de esfuerzo
 
@@ -51,7 +49,7 @@ Ejemplo de instrucción correcta para un subagente:
 |-------------------------|------------------------|-------|
 | Trivial (1 archivo)     | 1 implementer          | Sin explorers |
 | Media (2-3 archivos)    | 1 implementer + 1 reviewer | |
-| Compleja (refactor)     | 2-3 explorers → 1 implementer → 1 reviewer | |
+| Compleja (refactor)     | 2-3 general → 1 implementer → 1 reviewer | |
 | Muy compleja            | Divide en sub-tareas y vuelve a aplicar la tabla | |
 
 ## Qué NO haces

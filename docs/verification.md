@@ -17,17 +17,17 @@ Comando:
 python3 -m unittest discover -s tests -v
 ```
 
-### Nivel 2 — Test de integración del CLI (obligatorio para features de UI)
+### Nivel 2 — Test de integración de la interfaz (obligatorio para features de UI/CLI)
 
-Las features que añaden comandos al CLI se verifican ejecutando el CLI real
-contra un archivo temporal:
+Las features que añaden comandos o endpoints se verifican ejecutando la
+interfaz real contra datos temporales:
 
 ```python
 import subprocess, tempfile, os
 with tempfile.TemporaryDirectory() as d:
-    env = {**os.environ, "NOTES_FILE": os.path.join(d, "notes.json")}
+    env = {**os.environ, "DATA_FILE": os.path.join(d, "data.json")}
     out = subprocess.check_output(
-        ["python3", "-m", "src.cli", "add", "hola", "--body", "mundo"],
+        ["python3", "-m", "src.cli", "add", "hola"],
         env=env, text=True,
     )
     assert "id=" in out
@@ -36,12 +36,14 @@ with tempfile.TemporaryDirectory() as d:
 ### Nivel 3 — Smoke test manual (opcional pero recomendado)
 
 Antes de cerrar la sesión, ejecuta un flujo end-to-end con un archivo
-temporal en `/tmp`:
+temporal:
 
 ```bash
-NOTES_FILE=/tmp/notes_demo.json python3 -m src.cli add "test" --body "x"
-NOTES_FILE=/tmp/notes_demo.json python3 -m src.cli list
-rm /tmp/notes_demo.json
+# macOS / Linux
+DATA_FILE=/tmp/data_demo.json python3 -m src.cli add "test"
+
+# Windows PowerShell
+$env:DATA_FILE="$env:TEMP\data_demo.json"; python -m src.cli add "test"
 ```
 
 ## Anti-patrones (no hacer)
@@ -50,13 +52,14 @@ rm /tmp/notes_demo.json
 - ❌ Test que solo verifica que la función no lanza excepción. → tiene que
   comprobar el resultado concreto.
 - ❌ `mock` del filesystem. → usa `tempfile.TemporaryDirectory()` real.
-- ❌ Marcar la feature como `done` sin pasar `./init.sh`.
+- ❌ Marcar la feature como `done` sin pasar `./init.sh` (o `.\init.ps1` en Windows).
 
 ## Verificación final antes de cerrar
 
 ```bash
-./init.sh           # debe terminar con [OK] Entorno listo
+./init.sh           # debe terminar con [OK] Entorno listo (macOS/Linux)
+.\init.ps1          # debe terminar con [OK] Entorno listo (Windows)
 ```
 
-Si `./init.sh` está rojo, **no** marques nada como `done`. Anota el bloqueo
-en `progress/current.md` con estado `blocked` en `feature_list.json`.
+Si `./init.sh` (o `.\init.ps1`) está rojo, **no** marques nada como `done`.
+Anota el bloqueo en `progress/current.md` con estado `blocked` en `feature_list.json`.

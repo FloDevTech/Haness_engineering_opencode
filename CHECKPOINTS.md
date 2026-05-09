@@ -6,7 +6,7 @@
 
 ## C1 — El arnés está completo
 
-- [ ] Existen los 4 archivos base: `AGENTS.md`, `init.sh`, `feature_list.json`,
+- [ ] Existen los 4 archivos base: `AGENTS.md`, `init.sh` / `init.ps1`, `feature_list.json`,
       `progress/current.md`.
 - [ ] Existen los 3 docs: `docs/architecture.md`, `docs/conventions.md`,
       `docs/verification.md`.
@@ -42,6 +42,6 @@
 
 ---
 
-**Cómo usar este archivo:** un agente revisor (`.claude/agents/reviewer.md`)
+**Cómo usar este archivo:** un agente revisor (`.opencode/agents/reviewer.md`)
 recorre cada checkbox, marca `[x]` o `[ ]`, y rechaza el cierre de sesión
 si quedan boxes vacíos en C1-C5.

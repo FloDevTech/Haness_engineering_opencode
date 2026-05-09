@@ -8,8 +8,8 @@
 
 ## 1. Antes de empezar (obligatorio)
 
-1. Ejecuta `./init.sh` y verifica que termina sin errores. Si falla, **para**
-   y resuelve el entorno antes de tocar código.
+1. Ejecuta `./init.sh` (macOS/Linux) o `.\init.ps1` (Windows) y verifica que
+   termina sin errores. Si falla, **para** y resuelve el entorno antes de tocar código.
 2. Lee `progress/current.md` para entender en qué estado quedó la última sesión.
 3. Lee `feature_list.json` y elige **una** tarea con estado `pending`. No
    trabajes en más de una a la vez.
@@ -25,16 +25,16 @@
 | `docs/conventions.md`        | Reglas de estilo, nombres, estructura                     | Antes de escribir código |
 | `docs/verification.md`       | Cómo verificar que tu trabajo funciona                    | Antes de declarar una tarea como `done` |
 | `CHECKPOINTS.md`             | Criterios objetivos de "estado final correcto"            | Para auto-evaluarte |
-| `.claude/agents/`            | Definiciones de subagentes (líder, implementador, revisor) | Si orquestas trabajo |
-| `scripts/demo_orchestration.py` | Demo del patrón Líder-Trabajador con escritura en disco | Para entender la regla anti-teléfono-descompuesto |
+| `OPENCODE.md`                | Instrucciones de arranque para OpenCode (rol leader)      | Al inicio de cada sesión |
+| `.opencode/agents/`          | Definiciones de subagentes (líder, implementador, revisor) | Si orquestas trabajo |
 | `src/`                       | Código de la aplicación                                   | Para implementar |
 | `tests/`                     | Tests automáticos                                         | Para verificar |
 
 ## 3. Reglas duras (no negociables)
 
 - **Una sola feature a la vez.** No mezcles cambios de varias tareas en la misma sesión.
-- **No declares una tarea `done` sin pruebas verdes.** Ejecuta `./init.sh` y
-  asegúrate de que el bloque de tests pasa al 100%.
+- **No declares una tarea `done` sin pruebas verdes.** Ejecuta `./init.sh`
+  (o `.\init.ps1` en Windows) y asegúrate de que el bloque de tests pasa al 100%.
 - **Documenta lo que haces** en `progress/current.md` mientras trabajas, no al final.
 - **Deja el repositorio limpio** antes de cerrar la sesión (ver §5).
 - **Si no sabes algo, busca en `docs/`** antes de inventarlo.
@@ -53,7 +53,7 @@
 
 Antes de terminar:
 
-1. Ejecuta `./init.sh` — todo verde.
+1. Ejecuta `./init.sh` (o `.\init.ps1` en Windows) — todo verde.
 2. Si la tarea está acabada: marca `status: "done"` en `feature_list.json`.
 3. Mueve el resumen de `progress/current.md` al final de `progress/history.md`.
 4. Vacía `progress/current.md` dejando solo la plantilla.

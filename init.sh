@@ -18,7 +18,7 @@ fail()  { printf "${RED}[FAIL]${NC}  %s\n" "$1"; }
 
 EXIT_CODE=0
 
-echo "── 1. Verificando entorno ─────────────────────────────"
+echo "== 1. Verificando entorno ============================================"
 
 # Python disponible
 if ! command -v python3 >/dev/null 2>&1; then
@@ -36,7 +36,7 @@ fi
 ok "Versión de Python compatible"
 
 echo ""
-echo "── 2. Verificando archivos base del arnés ──────────────"
+echo "== 2. Verificando archivos base del arnés ============================"
 
 for f in AGENTS.md feature_list.json progress/current.md docs/architecture.md docs/conventions.md docs/verification.md CHECKPOINTS.md; do
   if [ ! -f "$f" ]; then
@@ -48,7 +48,7 @@ for f in AGENTS.md feature_list.json progress/current.md docs/architecture.md do
 done
 
 echo ""
-echo "── 3. Validando feature_list.json ──────────────────────"
+echo "== 3. Validando feature_list.json ===================================="
 
 python3 - <<'PY'
 import json, sys
@@ -72,21 +72,25 @@ PY
 if [ $? -ne 0 ]; then EXIT_CODE=1; fi
 
 echo ""
-echo "── 4. Ejecutando tests ─────────────────────────────────"
+echo "== 4. Ejecutando tests ==============================================="
 
 if [ -d "tests" ]; then
-  if python3 -m unittest discover -s tests -v 2>&1; then
-    ok "Todos los tests pasan"
+  if ls tests/test_*.py 1>/dev/null 2>&1; then
+    if python3 -m unittest discover -s tests -v 2>&1; then
+      ok "Todos los tests pasan"
+    else
+      fail "Hay tests rotos"
+      EXIT_CODE=1
+    fi
   else
-    fail "Hay tests rotos"
-    EXIT_CODE=1
+    warn "Carpeta tests/ existe pero no contiene test_*.py todavía"
   fi
 else
   warn "Carpeta tests/ no existe todavía"
 fi
 
 echo ""
-echo "── 5. Resumen ──────────────────────────────────────────"
+echo "== 5. Resumen ========================================================"
 
 if [ $EXIT_CODE -eq 0 ]; then
   ok "Entorno listo. Puedes empezar a trabajar."

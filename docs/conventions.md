@@ -16,10 +16,10 @@
 
 | Tipo                    | Convención        | Ejemplo               |
 |-------------------------|-------------------|-----------------------|
-| Módulos                 | `snake_case`      | `notes.py`            |
-| Clases                  | `PascalCase`      | `Note`                |
-| Funciones / variables   | `snake_case`      | `load_notes`          |
-| Constantes              | `UPPER_SNAKE`     | `DEFAULT_NOTES_PATH`  |
+| Módulos                 | `snake_case`      | `storage.py`          |
+| Clases                  | `PascalCase`      | `User`                |
+| Funciones / variables   | `snake_case`      | `load_data`           |
+| Constantes              | `UPPER_SNAKE`     | `DEFAULT_DATA_PATH`   |
 | Privadas                | prefijo `_`       | `_atomic_write`       |
 
 ## Estructura de archivo
@@ -35,7 +35,7 @@ import json
 import os
 
 # imports locales
-from src.notes import Note
+from src.models import User
 ```
 
 ## Tests
@@ -47,18 +47,18 @@ from src.notes import Note
 
 ## Manejo de errores
 
-Excepciones del dominio en `src/notes.py`:
+Define excepciones del dominio en tu módulo de modelos:
 
 ```python
-class NoteError(Exception):
+class DomainError(Exception):
     """Base para errores del dominio."""
 
-class NoteNotFound(NoteError):
-    """Se lanza cuando se busca una nota inexistente."""
+class NotFoundError(DomainError):
+    """Se lanza cuando se busca un recurso inexistente."""
 ```
 
-El CLI captura excepciones del dominio, imprime mensaje a `stderr` y sale
-con código 1. Nunca propaga stack traces al usuario.
+La interfaz (CLI o API) captura excepciones del dominio, imprime mensaje a
+`stderr` y sale con código 1. Nunca propaga stack traces al usuario.
 
 ## Comentarios
 
