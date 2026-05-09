@@ -1,7 +1,14 @@
 ---
 name: reviewer
 description: Revisor automático. Aprueba o rechaza el trabajo del implementador comparándolo contra docs/architecture.md, docs/conventions.md y CHECKPOINTS.md.
-tools: read, glob, grep, bash, write
+tools: 
+   read : true
+   write : true
+   edit : false
+   glob : true
+   grep : true
+   bash : true
+   task : false
 ---
 
 # Agente Revisor

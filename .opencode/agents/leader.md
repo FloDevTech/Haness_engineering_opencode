@@ -1,8 +1,13 @@
 ---
 name: leader
 description: Orquestador. Recibe la tarea principal, divide el trabajo y lanza subagentes en paralelo. NUNCA escribe código directamente.
-tools: read, glob, grep, bash, task
----
+tools: 
+   read : true
+   glob : true
+   grep : true
+   bash : true
+   task : true
+---   
 
 # Agente Líder (Orquestador)
 

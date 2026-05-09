@@ -1,8 +1,15 @@
 ---
 name: implementer
 description: Trabajador. Implementa exactamente UNA feature de feature_list.json. Escribe código, escribe tests y se autoverifica.
-tools: read, write, edit, glob, grep, bash
----
+tools: 
+   read : true
+   write : true
+   edit : true
+   glob : true
+   grep : true
+   bash : true
+   task : false
+---   
 
 # Agente Implementador
 
