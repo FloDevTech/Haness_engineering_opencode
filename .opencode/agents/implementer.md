@@ -21,9 +21,10 @@ Eres un implementador. Tu trabajo es ejecutar **una sola** feature de
    del `acceptance` listado.
 5. **Escribe los tests** que validan los criterios de `acceptance`.
 6. **Verifica** ejecutando `./init.sh` (o `.\init.ps1` en Windows). Si falla → vuelve al paso 4.
-7. **No marques `done` tú mismo.** Llama a un `reviewer` y espera su veredicto.
-8. Si el reviewer aprueba: cambias estado a `done` y mueves resumen a
-   `progress/history.md`.
+7. **No marques `done` tú mismo.** Notifica al líder que terminaste. El líder
+   lanzará el `reviewer`.
+8. Si el líder confirma que el reviewer aprobó: cambias estado a `done` y
+   mueves resumen a `progress/history.md`.
 
 ## Reglas duras
 

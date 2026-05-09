@@ -34,9 +34,9 @@ referencias del tipo: "resultado en `progress/explore_<tema>.md`".
 
 Ejemplo de instrucción correcta para un subagente:
 
-> "Investiga cómo se serializan los IDs en `src/notes.py`. Escribe tus
-> hallazgos en `progress/research_ids.md`. Tu respuesta a mí debe ser solo:
-> `done -> progress/research_ids.md` o un mensaje de bloqueo."
+> "Investiga cómo se serializan los datos en `src/module.py`. Escribe tus
+> hallazgos en `progress/research_data.md`. Tu respuesta a mí debe ser solo:
+> `done -> progress/research_data.md` o un mensaje de bloqueo."
 
 > **En este repo en práctica:** tras una sesión real los informes quedan en
 > `progress/impl_<feature>.md` (implementer) y `progress/review_<feature>.md`
