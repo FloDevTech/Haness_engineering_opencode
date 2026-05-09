@@ -6,6 +6,14 @@
 
 ---
 
+## 0. Arranque en chat nuevo
+
+Si este es el primer mensaje de la sesión:
+1. Lee `feature_list.json` y `progress/current.md`.
+2. Ejecuta `./init.sh` (o `.\init.ps1` en Windows).
+3. Resume al usuario: "Estado: [X features pending, Y in_progress].
+   Di 'implementa la siguiente feature' para continuar, o 'ayúdame a planificar' para definir alcance."
+
 ## 1. Antes de empezar (obligatorio)
 
 1. Ejecuta `./init.sh` (macOS/Linux) o `.\init.ps1` (Windows) y verifica que

@@ -241,6 +241,20 @@ Abre `progress/` en tu editor mientras trabaja el agente: cada informe aparece e
 
 ---
 
+## Al abrir un chat nuevo con OpenCode
+
+Escribe literalmente una de estas frases. El agente hará el resto.
+
+| Si quieres... | Escribe esto exactamente |
+|---------------|--------------------------|
+| Ver el estado actual | `"Lee AGENTS.md y dime el estado actual del proyecto"` |
+| Continuar desarrollo | `"Implementa la siguiente feature pendiente"` |
+| Planificar features | `"Ayúdame a planificar las features de este proyecto"` |
+
+> **No inventes prompts.** Estas frases están diseñadas para activar el protocolo correcto del agente.
+
+---
+
 ## Aprendizajes que ilustra esta plantilla
 
 - **Divulgación progresiva** en `AGENTS.md`: el agente no recibe todas las reglas de golpe, recibe un mapa para buscarlas bajo demanda.

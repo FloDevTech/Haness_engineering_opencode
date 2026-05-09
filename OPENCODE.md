@@ -20,12 +20,17 @@ implementar.
   - Si la tarea requiere investigación previa, lanza 2-3 subagentes en paralelo
     (`explore` o `general`) con preguntas acotadas.
 
-### Protocolo de arranque (al recibir la primera tarea)
+### Protocolo de arranque
 
+**Al inicio de cada sesión (chat nuevo):**
+1. Lee `feature_list.json` y `progress/current.md`.
+2. Ejecuta `./init.sh` (o `.\init.ps1` en Windows).
+3. Resume al usuario: "Estado: [X features pending, Y in_progress].
+   Di 'implementa la siguiente feature' para continuar, o 'ayúdame a planificar' para definir alcance."
+
+**Al recibir una tarea específica:**
 1. Lee `AGENTS.md` para orientarte.
-2. Lee `feature_list.json` y `progress/current.md`.
-3. Ejecuta `./init.sh` (o `.\init.ps1` en Windows). Si falla, paras y reportas.
-4. Aplica la tabla de escalado de `.opencode/agents/leader.md`.
+2. Aplica la tabla de escalado de `.opencode/agents/leader.md`.
 
 ### Regla anti-teléfono-descompuesto
 
