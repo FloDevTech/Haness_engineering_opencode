@@ -60,8 +60,9 @@ Este arnés se usa en **dos modos**. Nunca los mezcles en la misma sesión.
 git clone https://github.com/FloDevTech/Haness_engineering_opencode.git mi-proyecto
 cd mi-proyecto
 
-# Opcional: reiniciar git para que sea un repo nuevo
-rm -rf .git && git init
+# Opcional: reiniciar git para que sea un repo nuevo para powershell
+rm -Recurse -Force .git 
+git init
 
 # Verificar que el arnés base está sano (Windows)
 .\init.ps1
